@@ -15,6 +15,11 @@ Ansible Server <-------------------------------->
 |             |                   ------------------------------
 Playbook     Inventory             Node 1      Node 2       Node 3
 ```
+# Features of Ansible
+- Easy setup
+- Agentless
+- Python as a backend
+- Simple and human readable
 
 # Ansible Labs
 
