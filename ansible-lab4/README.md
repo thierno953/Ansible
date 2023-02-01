@@ -37,16 +37,11 @@ ansible-galaxy allows us to upload roles and also provides a great default frame
 ```shell
 - hosts: webservers
   become: yes
-  vars:
-    http_port: 8000
-    https_port: 4443
-    html_welcome_msg: "Hello world!"
+
   roles:
     - common
     - apache2
 
-- hosts: proxy
-  become: yes
   roles:
     - common
     - nginx
