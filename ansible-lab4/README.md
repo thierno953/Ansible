@@ -5,12 +5,19 @@ ansible-galaxy allows us to upload roles and also provides a great default frame
 ## Role directory structure
 
 - default: Contains default variables for the role. Variales in default have the lowest priority so they are easy to override.
+----------
 - vars: Contains variables for the role. Variables in vars have higher priority than variables in defaults directory.
+-------
 - tasks: Contains the main list of steps to be executed by the role.
+--------
 - files: Contains files which we want to be copied to the remote host. We don't need to specify a path of resources stored in this directory.
+--------
 - templates: Contains file template which supports modifications from the role.
+---------
 - meta: Contains metadata of role like an author, support platforms, dependencies.
+-------
 - handlers: Contains handlers which can be invoked by "notify" directives and are associated with service.
+----------
 
 ## Let's modify the playbook so that it uses the role feature to configure apache2
 
