@@ -3,9 +3,9 @@
 ### Let's configure Vagrant and connect to the ansible-control server
 
 ``` shell
-wanderer validate
-vagabond
-vagrant ssh ansible control
+vagrant validate
+vagrant up
+vagrant ssh ansible-control
 ```
 
 ### Copy the hosts file to ansible-control
