@@ -38,5 +38,5 @@ ansible webstack -i hosts -m command -a date
 ### Install python-simplejson
 
 ```shell
-ansible all -i hosts -m command -a 'sudo apt-get -y install python3'
+ansible all -i hosts -m command -a 'sudo apt-get -y install python-simplejson'
 ```
