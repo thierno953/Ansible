@@ -24,9 +24,3 @@ ansible-playbook -i hosts -K playbook1.yml --tags web,configuration
 ansible-playbook -i hosts -K playbook1.yml --tags nginx_configuration
 ```
 
-### Remarks:
-
-Tags use "OR" logic, not "AND". If any of our tags match, the element will be executed. We need to use unique tags if the element should only be executed under specific conditions.
-
-Special tags: always, never. Meaning "always" run or "never" run unless explicitly told to.
-Special tag keywords: tagged, untagged, and all. By default we run playbooks at -tags all
