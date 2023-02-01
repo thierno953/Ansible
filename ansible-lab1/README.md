@@ -1,42 +1,42 @@
-# Ansible Lab 1 - Installation and Inventory file basics
+# Ansible Lab 1 - Installation and Inventory File Basics
 
-### Setup Vagrant and connect to ansible-control server
+### Let's configure Vagrant and connect to the ansible-control server
 
-```shell
-vagrant validate
-vagrant up
-vagrant ssh ansible-control
+``` shell
+wanderer validate
+vagabond
+vagrant ssh ansible control
 ```
 
-### Copy hosts file on ansible-control
+### Copy the hosts file to ansible-control
 
-```shell
+``` shell
 sudo cp /vagrant/hosts_file /etc/hosts
 ```
 
 ### Install Ansible
 
-```shell
+``` shell
 sudo apt-get install ansible
 ```
 
-### Create a SSH key and copy to all servers
+### Let's create an SSH key and copy it to all servers
 
-```shell
-ssh-keygen -t ed25519 -C "Ansible Key Pair"
+``` shell
+ssh-keygen -t ed25519 -C "Ansible key pair"
 ssh-copy-id localhost
 ssh-copy-id web01 && ssh-copy-id web02 && ssh-copy-id loadbalancer && ssh-copy-id db01
 ```
 
-### Run a ad-hoc command to the webstack group
+### Let's run an ad-hoc command to the webstack group
 
-```shell
+``` shell
 ansible webstack -i hosts -m command -a hostname
 ansible webstack -i hosts -m command -a date
 ```
 
-### Install python-simplejson
+### Let's install python-simplejson
 
-```shell
+``` shell
 ansible all -i hosts -m command -a 'sudo apt-get -y install python-simplejson'
 ```
