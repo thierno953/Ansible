@@ -1,4 +1,4 @@
-# Ansible Lab 4 - Re-usable playbooks - including and importing
+# Ansible Lab 3 - Re-usable playbooks - including and importing
 
 1. Let's move the tasks to a tasks subfolder
 2. Let's move the manager to the manager subfolder

@@ -1,4 +1,4 @@
-# Ansible 7 Lab - Ansible Variables
+# Ansible 6 Lab - Ansible Variables
 
 Two types of variables. Set of users and "ansibles facts".
 

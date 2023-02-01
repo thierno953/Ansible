@@ -1,4 +1,4 @@
-# Ansible Lab 6 - Using Tags
+# Ansible Lab 5 - Using Tags
 
 Tags allow us to categorize items in our playbooks and tasks.
 
