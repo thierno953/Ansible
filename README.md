@@ -1,3 +1,21 @@
+# What is Ansible ?
+
+- Ansible is very simple, open source and human readable automation tool.
+It is agentless and uses SSH connection to orchestrate all the tasks which we were talking above
+such as configuration management, application,
+and provisioning in a flat or multi-tier environment.
+
+- Ansible Architecture
+
+```shell
+Ansible Server <-------------------------------->
+       |                                        |
+       |                          ------------------------------
+<------------->                   | ssh         ssh         ssh|
+|             |                   ------------------------------
+Playbook     Inventory             Node 1      Node 2       Node 3
+```
+
 # Ansible Labs
 
 ## How to use these Labs
