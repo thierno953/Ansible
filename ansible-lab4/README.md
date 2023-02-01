@@ -1,4 +1,4 @@
-# Ansible Lab 5 - Roles and Ansible Galaxy
+# Ansible Lab 4 - Roles and Ansible Galaxy
 
 ansible-galaxy allows us to upload roles and also provides a great default framework to create your own roles.
 
