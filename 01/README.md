@@ -47,7 +47,8 @@ languages:
 
 ```bsah
 ---
-# Comments inside a YAML file can be added followed by the '#' character
+#Comments inside a YAML file can be added followed by the '#' character
+
 company: spacelift
 ```
 
