@@ -18,7 +18,7 @@
 
 - Install prometheus using Ansible which is a monitoring tool used by most of the organization because its open source tool.
 
-## Steps Involved:
+## Steps Involved: 
 
 - 1 - Download prometheus binary from Prometheus official website.
 - 2 - Copy and Unarchive or unpack the prometheus binary on target system.
