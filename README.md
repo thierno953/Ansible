@@ -11,7 +11,7 @@
 - Configuration Management.
 - Continuous Delivery.
 - Application Deployment.
-- Security Compilance.
+- Security Compliance.
 - Scripts (Time , Coding Skills, Maintenace).
 
 # Ansible Architecture
