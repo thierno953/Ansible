@@ -88,7 +88,7 @@ databases
         state: latest
 ```
 
-# Ansible Lab 1 - Installation and Inventory file basics
+# Ansible Lab 1 - Installation and Inventory file
 
 ### Setup Vagrant and connect to ansible-control server
 
@@ -112,7 +112,9 @@ cp /vagrant/hosts_file /etc/hosts
 ### Create a SSH key and copy to all servers
 
 ```shell
-ssh-keygen
+ssh-keygen -t ed25519 -C "Ansible Key Pair"
+cat ~/.ssh/
+cat ~/.ssh/id_ed25519.pub
 ssh-copy-id localhost
 ssh-copy-id node1
 ```
