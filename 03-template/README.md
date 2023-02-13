@@ -10,7 +10,7 @@
 - Copy (scp) the file to the remote server.
 - Ansible template module is designed to perform only these two things and it does same perfectly and before going to Ansible template it is necessary that we should understand the Ansible interpolation syntax and how it works.
 
-# Jinja2
+# What is Jinja2 ?
 
 - Jinja2 templates are simple template files that store variables that can change from time to time. When playbooks are executed, these variables get replaced by actual values definied in Ansible Playbooks. This way, templating offers an efficient and flexible solution to create or alter configuration file with ease.
 
