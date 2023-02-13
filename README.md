@@ -62,6 +62,8 @@ Playbook     Inventory             Node 1      Node 2       Node 3
 4. Start the vagrant instance.
 
 ```shell
+vagrant validate
+
 vagrant up
 ```
 
