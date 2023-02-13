@@ -2,35 +2,16 @@ Vagrant.configure("2") do |config|
   servers=[
     {
       :hostname => "ansible-control",
-      :box => "bento/ubuntu-22.04",
+      :box => "geerlingguy/centos7",
       :ip => "192.168.56.100",
       :ssh_port => '2215'
     },
     {
-      :hostname => "db01",
-      :box => "bento/ubuntu-22.04",
+      :hostname => "node1",
+      :box => "geerlingguy/centos7",
       :ip => "192.168.56.101",
       :ssh_port => '2210'
     },
-    {
-      :hostname => "web01",
-      :box => "bento/ubuntu-22.04",
-      :ip => "192.168.56.102",
-      :ssh_port => '2211'
-    },
-    {
-      :hostname => "web02",
-      :box => "bento/ubuntu-22.04",
-      :ip => "192.168.56.103",
-      :ssh_port => '2212'
-    },
-    {
-      :hostname => "loadbalancer",
-      :box => "bento/ubuntu-22.04",
-      :ip => "192.168.56.104",
-      :ssh_port => '2213'
-    }
-
   ]
 
   servers.each do |machine|
