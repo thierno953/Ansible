@@ -2,13 +2,16 @@
 - hosts: webservers
   become: yes
   tasks:
-    - name: install softwares multiple
+    - name: Install the latest version of Apache
       yum:
-        name: "{{ item }}"
+        name: httpd
         state: latest
-      when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7")
-      loop:
-        - git
-        - docker
-        - python3
-        - java
+
+      notify:
+        - Start Apache
+
+  handlers:
+    - name: Start Apache
+      service:
+        name: httpd
+        state: started
