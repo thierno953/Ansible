@@ -4,7 +4,7 @@
 
 ## Why use Ansible Vault ?
 
-- Ansible is used for automation, the playbooks contain certain credentials, SSL certificates, or other sensitive data. Usually, we store our sensitive data in the variable of vault.
+- Ansible is used for automation, the playbooks contain certain credentials, **SSL certificates**, or other sensitive data. Usually, we store our sensitive data in the variable of vault.
 
 ```bash
 [control]
