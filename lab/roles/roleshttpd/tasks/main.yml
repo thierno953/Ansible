@@ -1,0 +1,6 @@
+---
+# tasks file for devopsclassrole
+- name: use user
+  include_tasks: user.yml
+- name: install soft
+  include_tasks: install.yml
