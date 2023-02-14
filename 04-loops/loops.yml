@@ -1,0 +1,14 @@
+---
+- hosts: webservers
+  become: yes
+  gather_facts: false
+  tasks:
+    - name: install softwares multiple
+      yum:
+        name: "{{ item }}"
+        state: latest
+      loop:
+        - git
+        - docker
+        - python3
+        - java

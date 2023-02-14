@@ -1,23 +1,14 @@
 ---
 - hosts: webservers
   become: yes
+  gather_facts: false
   tasks:
-    - name: copy software
-      copy:
-        src: /vagrant/lab/prometheus-2.42.0.linux-amd64.tar.gz
-        dest: /usr/local/bin
-    - name: unarchive module
-      unarchive:
-        src: /usr/local/bin/prometheus-2.42.0.linux-amd64.tar.gz
-        dest: /usr/local/bin/
-        remote_src: yes
-
-    - name: template module
-      template:
-        src: /vagrant/lab/prometheus.service.j2
-        dest: /etc/systemd/system/prometheus.service
-        
-    - name: start prometheus service
-      service:
-        name: prometheus.service
-        state: started
+    - name: install softwares multiple
+      yum:
+        name: "{{ item }}"
+        state: latest
+      loop:
+        - git
+        - docker
+        - python3
+        - java
