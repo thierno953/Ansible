@@ -1,4 +1,4 @@
-<!-- # Ansible Template
+# Ansible Template
 
 - Ansible template module helps to template a file out to a remote server.
 - Simply put, at runtime ansible template module updates the jinja2 interpolation syntax variables with actual and copy the template file to the remote server with the specified name.
@@ -23,4 +23,4 @@
 
 - 1 - Download prometheus binary from Prometheus official website.
 - 2 - Copy and Unarchive or unpack the prometheus binary on target system.
-- 3 - Create prometheus as a service on the target system. -->
+- 3 - Create prometheus as a service on the target system.
