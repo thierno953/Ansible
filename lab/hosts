@@ -1,8 +1,12 @@
-[control]
-ansible-control
-
-[webservers] 
+[prometheus]
 node1
 
-[webstack:children]  
-webservers 
+[node_exporter]
+node1
+
+[alertmanager]
+node1
+
+[grafana]
+node1
+

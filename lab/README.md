@@ -14,71 +14,44 @@
 ├── README.md
 └── roles
     ├── alertmanager
-    │   ├── defaults
-    │   │   └── main.yml
     │   ├── files
+    │   │   └── alertmanager.yml
     │   ├── handlers
     │   │   └── main.yml
-    │   ├── meta
-    │   │   └── main.yml
-    │   ├── README.md
     │   ├── tasks
     │   │   └── main.yml
     │   ├── templates
-    │   ├── tests
-    │   │   ├── inventory
-    │   │   └── test.yml
+    │   │   └── init.service.j2
     │   └── vars
     │       └── main.yml
     ├── grafana
-    │   ├── defaults
-    │   │   └── main.yml
-    │   ├── files
     │   ├── handlers
-    │   │   └── main.yml
-    │   ├── meta
     │   │   └── main.yml
     │   ├── README.md
     │   ├── tasks
     │   │   └── main.yml
     │   ├── templates
-    │   ├── tests
-    │   │   ├── inventory
-    │   │   └── test.yml
+    │   │   └── grafana.conf.j2
     │   └── vars
     │       └── main.yml
     ├── prometheus
-    │   ├── defaults
-    │   │   └── main.yml
     │   ├── files
+    │   │   └── alertrules.yml
     │   ├── handlers
     │   │   └── main.yml
-    │   ├── meta
-    │   │   └── main.yml
-    │   ├── README.md
     │   ├── tasks
     │   │   └── main.yml
     │   ├── templates
-    │   ├── tests
-    │   │   ├── inventory
-    │   │   └── test.yml
+    │   │   ├── init.service.j2
+    │   │   └── prometheus.conf.j2
     │   └── vars
     │       └── main.yml
     └── prometheus_node_exporter
-        ├── defaults
-        │   └── main.yml
-        ├── files
-        ├── handlers
-        │   └── main.yml
-        ├── meta
-        │   └── main.yml
-        ├── README.md
         ├── tasks
         │   └── main.yml
         ├── templates
-        ├── tests
-        │   ├── inventory
-        │   └── test.yml
+        │   └── init.service.j2
         └── vars
             └── main.yml
+
 ```
