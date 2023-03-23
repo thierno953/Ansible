@@ -20,7 +20,7 @@
 
 - **handlers:** contains handlers which can be invoked by "notify" directives and are associated with service.
 
-## Create an httpd role, move the tasks/handlers/templates to the new roles/httpd structure. Let's run the playbook.
+**Create an httpd role, move the tasks/handlers/templates to the new roles/httpd structure. Let's run the playbook.**
 
 ```bash
 sudo yum install tree
