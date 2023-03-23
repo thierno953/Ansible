@@ -1,8 +1,8 @@
 # Ansible Roles
 
-- Ansible roles allow you to develop reusable automation components by grouping and encapsulating related automation artifacts, like configuration files, templates, tasks, and handlers.
+- Ansible roles **allow you to develop reusable automation components by grouping and encapsulating related automation artifacts, like configuration files, templates, tasks, and handlers.**
 
-# Roles Continued...
+## Roles Continued...
 
 - A role directory structure contains directories: default, vars, tasks, files, templates, meta, handlers. Each directory must contain a main.yml file which contains relevant content. Let' look little close to each directory.
 
@@ -20,7 +20,7 @@
 
 - **handlers:** contains handlers which can be invoked by "notify" directives and are associated with service.
 
-### Let's create an httpd role, move the tasks/handlers/templates to the new roles/httpd structure. Let's run the playbook.
+## Create an httpd role, move the tasks/handlers/templates to the new roles/httpd structure. Let's run the playbook.
 
 ```bash
 sudo yum install tree
@@ -28,7 +28,7 @@ sudo yum install tree
 ansible-galaxy init roles/roleshttpd
 ```
 
-## Using roles in playbook
+**Using roles in playbook**
 
 ```bash
 ---
