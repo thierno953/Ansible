@@ -14,7 +14,7 @@
 
 - **files:** contains files which we want to be copied to the remote host. We don't need to specify a path of resources stored in this directory.
 
-- **templates:** contains file template which supports modifications from the role. We use the <Jinja2 templating> language for creating templates.
+- **templates:** contains file template which supports modifications from the role. We use the **Jinja2 templating** language for creating templates.
 
 - **meta:** contains metadata of role like an author, support platforms, dependencies.
 
