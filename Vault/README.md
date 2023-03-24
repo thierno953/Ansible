@@ -40,7 +40,7 @@
   **Decrypted Encrypted Files During Runtime**
 
   ```bash
-  ansible-playbook launch.yml --ask-vault-pass
+  ansible-playbook -i hosts -K playbook1.yml --ask-vault-pass
   ```
 
   ```bash
