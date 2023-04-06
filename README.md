@@ -1,11 +1,9 @@
-# What is Ansible ?
+# Ansible
 
 - Ansible is very simple, open source and human readable automation tool.
   It is agentless and uses SSH connection to orchestrate all the tasks which we were talking above
   such as configuration management, application,
   and provisioning in a flat or multi-tier environment.
-
-# Why Ansible?
 
 - Provisioning.
 - Configuration Management.
