@@ -14,43 +14,6 @@
 - Security Compliance.
 - Scripts (Time , Coding Skills, Maintenace).
 
-# Ansible Architecture
-
-### Ansible Use Case 1
-
-```bash
------------------------------------------------------------------------------
-System Admin <---------->  Test Team <-----------> Delivery Team
------------------------------------------------------------------------------
-                             |
-------------------------------------------------------------------------------
-|                            |                                  |
-Playbooks                Templates                          Modules
-------------------------------------------------------------------------------
-|           |           |            |              |         |         |
-Create   Provision     Push      Configuration   Security  Services    Deploy
-------------------------------------------------------------------------------
-|           |           |            |               |                  |
-Instances  Server    OS Image     Configured       Approved         App-ready
-                                    Server         Server            Server
-------------------------------------------------------------------------------
-                      Pool of running servers
-------------------------------------------------------------------------------
-```
-
-### Ansible Use Case 2
-
-```bash
-------------------------------------------------------------------------------
-Ansible Management Node  <--------------------------------------->
-       |                                        |
-       |                          ------------------------------
-<------------>                    | ssh         ssh         ssh  |
-|             |                   ------------------------------
-Playbook     Inventory             Node 1      Node 2       Node 3
-------------------------------------------------------------------------------
-```
-
 # YAML
 
 - YAML is one of the most popular data "serialization" languages.
@@ -167,7 +130,7 @@ cp /vagrant/hosts_file /etc/hosts
 
 ```shell
 ssh-keygen -t ed25519 -C "Ansible Key Pair"
-cat ~/.ssh/
+cd ~/.ssh/
 cat ~/.ssh/id_ed25519.pub
 ssh-copy-id localhost
 ssh-copy-id node1
