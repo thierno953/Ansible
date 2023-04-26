@@ -1,8 +1,0 @@
-[control]
-ansible-control
-
-[webservers]
-node1
-
-[webstack:children]
-webservers
