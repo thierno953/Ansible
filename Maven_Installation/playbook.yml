@@ -1,0 +1,36 @@
+---
+- name: "Download the apache tar file"
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Install java
+      yum:
+        name: java
+        state: latest
+
+    - name: download the apache tar file
+      get_url:
+        url: https://dlcdn.apache.org/maven/maven-3/3.9.1/binaries/apache-maven-3.9.1-bin.tar.gz
+        dest: /opt
+        mode: "0755"
+
+    - name: extract the tar file
+      unarchive:
+        src: /opt/apache-maven-3.9.1-bin.tar.gz
+        dest: /opt
+        remote_src: true
+
+    - name: Removing tart file
+      file:
+        path: /opt/apache-maven-3.9.1-bin.tar.gz
+        state: absent
+
+    - name: Renaming a file
+      command: mv /opt/apache-maven-3.9.1 /opt/maven
+
+    - name: set environment variable
+      lineinfile: dest=/root/.bashrc line="export PATH=$PATH:/opt/maven/bin" insertafter="EOF" regexp="export PATH=\$PATH:/opt/maven/bin" state=present
+
+    - name: source the bashrc file
+      shell: source /root/.bashrc
+      remote_user: root
