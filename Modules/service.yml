@@ -1,8 +1,0 @@
----
-- hosts: webservers
-  become: yes
-  tasks:
-    - name: service start
-      service:
-        name: jenkins
-        state: started
