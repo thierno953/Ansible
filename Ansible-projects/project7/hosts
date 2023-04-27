@@ -1,0 +1,11 @@
+[prometheus]
+node1
+
+[node_exporter]
+node1
+
+[alertmanager]
+node1
+
+[grafana]
+node1
