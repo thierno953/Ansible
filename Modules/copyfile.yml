@@ -1,0 +1,8 @@
+---
+- hosts: webservers
+  become: yes
+  tasks:
+    - name: copy soft
+      copy:
+        src: /vagrant/lab/text.txt
+        dest: /home/vagrant

@@ -121,7 +121,9 @@ cp /vagrant/hosts_file /etc/hosts
 ### Install Ansible
 
 ```shell
- sudo yum install ansible -y
+yum install epel-release -y
+
+yum install ansible -y
 ```
 
 ### Create a SSH key and copy to all servers
