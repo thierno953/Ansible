@@ -1,0 +1,12 @@
+---
+- name: "Download the apache tar file"
+  hosts: webservers
+  tasks:
+    - name: Install Maven using Ansible
+      become: yes
+      yum:
+        name: "{{ packages }}"
+        state: present
+      vars:
+        packages:
+          - maven
