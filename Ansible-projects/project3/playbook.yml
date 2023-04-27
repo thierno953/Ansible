@@ -3,7 +3,7 @@
   become: yes
   tasks:
     - name: Copy software
-      copy:
+      copy: 
         src: /vagrant/labs/prometheus-2.44.0-rc.0.linux-amd64.tar.gz
         dest: /usr/local/bin
 
