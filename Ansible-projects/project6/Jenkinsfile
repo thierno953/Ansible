@@ -1,0 +1,15 @@
+pipeline{
+	agent{label 'ansible'}
+	stages{
+		stage('SCM Checkout'){
+			steps{
+				git 'https://github.com/thierno953/Ansible.git'
+			}
+		}
+		stage('Execute Ansible'){
+			steps{
+				ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible-main', inventory: 'hosts', playbook: 'apache.yml'
+			}
+		}
+	}
+}
