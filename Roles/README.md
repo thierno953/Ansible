@@ -40,7 +40,7 @@ ansible-galaxy init roles/roleshttpd
 
 ```bash
 ├── hosts
-├── playbook1.yml
+├── role.yml
 └── roles
     └── roleshttpd
         ├── defaults
