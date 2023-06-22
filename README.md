@@ -51,25 +51,19 @@ ansible all -m setup -a "filter=ansible_distribution"  #(ansible_distribution of
 
 #3. shell      //Execute the shell commands in the remote machines
 ansible all -m shell -a "pwd"
-ansible all -m shell -a "ls -la"
-ansible all -m shell -a "date"
+ansible -i all -m shell -a "date"
+ansible -i all -m shell -a "ls /"
+ansible -i all -m shell -a "ls -la"
+ansible -i all -m shell -a "pwd"
 ansible all -m shell -a "touch abc.txt" -b
-
-ansible -i /etc/hosts all -m shell -a "date"
-ansible -i /etc/hosts all -m shell -a "ls /"
-ansible -i /etc/hosts all -m shell -a "ls -la"
-ansible -i /etc/hosts all -m shell -a "pwd"
-ansible -i /etc/hosts all -m shell -a "touch /opt/file.txt" -b
-ansible -i /etc/hosts all -m shell -a "ls /opt"
-
 
 #4. yum/apt    //To install the package
 # yum - state values: absent, installed, latest, present, removed
 # apt - state values: absent, build-dep, fixed, latest, present
-ansible -i /etc/hosts all -m yum -a "pkg=httpd state=installed"
-ansible -i /etc/hosts all -m yum -a "pkg=httpd state=installed" -b
-ansible -i /etc/hosts dbservers -m shell -a "apt update" -b
-ansible -i /etc/hosts dbservers -m apt -a "pkg=apache2 state=latest" -b
+ansible -i all -m yum -a "pkg=httpd state=installed"
+ansible -i all -m yum -a "pkg=httpd state=installed" -b
+ansible -i dbservers -m shell -a "apt update" -b
+ansible -i dbservers -m apt -a "pkg=apache2 state=latest" -b
 
 ansible all -m yum -a "pkg=httpd state=installed" -b
 ansible all -m apt -a "pkg=nginx state=latest" -b
