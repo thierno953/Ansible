@@ -74,7 +74,7 @@ ansible all -m yum -a "pkg=httpd state=installed" -b
 ansible all -m apt -a "pkg=nginx state=latest" -b
 
 #5. service    //To start/stop/restart the service
-# linux: state: reloaded, restarted, started, stopped
+# linux:  state: reloaded, restarted, started, stopped
 ansible -i prodappserver -m service -a "name=httpd state=started" -b
 ansible -i prodappserver -m service -a "name=httpd state=stopped" -b
 
