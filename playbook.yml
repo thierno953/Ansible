@@ -1,0 +1,111 @@
+# Collection of modules is called playbook
+# yaml - yet another markup language   yaml / yml
+
+## Section in playbooks
+
+# 1) target section      # host information
+# 2) variable section    # variables information ex; packages names
+# 3) tasks section       # installed/ removed 
+# 4) handler section     # deployment
+
+# -----------------------------------------
+
+# 1. create a file with name playbook.yml
+# 2. ---
+# 3. - hosts: all   - hosts: prodappserver  - hosts: dbservers
+# 4. become: true  become: yes
+# -----------------------------------------
+
+--- # to install and restart httpd service
+- hosts: prodappserver
+  become: true 
+  tasks:
+    - name: install httpd 
+      yum: pkg=httpd state=installed
+
+    - name: start httpd service
+      service: name=httpd state=started
+    
+    - name: deploy hello.html
+      copy: src=/home/vagrant/hello.html dest=/var/www/html
+
+# ansible-playbook <playbook name> - to execute the playbook
+# ansible-playbook book1.yml
+# ok  - if the command is already executed it is showing ok message in green colour
+# changed - if the execute command first time it is showing changed in yellow colour
+
+# -----------------------------------------
+
+# action:
+
+--- # to install and restart nginx service
+- hosts: all
+  become: yes 
+  tasks:
+    - name: install nginx
+      action: yum pkg=nginx state=installed
+
+    - name: start nginx service
+      action: service name=nginx state=started
+
+    - name: deploy hello.html
+      action: copy src=/home/vagrant/hello.html dest=/usr/share/nginx/html
+
+# check: 
+        # to dry run 
+        # ansible-playbook book2.yml --check
+
+# -----------------------------------------
+
+# pause: to pause the tasks some time / prompt
+
+--- # to install and restart httpd service
+- hosts: prodappserver
+  become: true 
+  tasks:
+    - name: install httpd
+      yum: pkg=httpd state=installed
+    
+    - name: pause the next tasks
+      pause:
+        prompt: "click on enter"
+
+    - name: start httpd service
+      service: name=httpd state=started
+    
+    - name: deploy hello.html
+      copy: src=/home/vagrant/hello.html dest=/var/www/html
+  
+# check: 
+        # to dry run 
+        # ansible-playbook book2.yml --check
+
+# -----------------------------------------
+
+# wait_for - waiting for something
+# httpd          nginx   80
+# httpd - running
+# nginx - start  - port 80 should be free
+
+--- # to install and restart nginx service
+- hosts: all
+  become: yes 
+  tasks:
+    - name: install nginx
+      action: yum pkg=nginx state=installed
+
+    - name: wait for port 80 is free
+      wait_for:
+        port: 80
+        state: stopped
+
+    - name: start nginx service
+      action: service name=nginx state=started
+
+    - name: deploy hello.html
+      action: copy src=/home/vagrant/hello.html dest=/usr/share/nginx/html
+
+
+# check: 
+        # to dry run 
+        # ansible-playbook book2.yml --check
