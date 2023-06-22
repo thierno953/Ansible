@@ -21,6 +21,4 @@
       action: copy src=/home/vagrant/hello.html dest=/var/www/html
 
 
-# ansible prodappserver -m shell -a "yum remove httpd" -b
-# ansible-playbook until.yml --check
-# ansible-playbook until.yml 
+ 
