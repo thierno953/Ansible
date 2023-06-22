@@ -30,9 +30,9 @@
       copy: src=/home/vagrant/hello.html dest=/var/www/html
 
 # ansible-playbook <playbook name> - to execute the playbook
-# ansible-playbook book1.yml
-# ok  - if the command is already executed it is showing ok message in green colour
-# changed - if the execute command first time it is showing changed in yellow colour
+# ansible-playbook playbook1.yml
+# ok  - if the command is already executed it is showing ok message in green color
+# changed - if the execute command first time it is showing changed in yellow color
 
 # -----------------------------------------
 
@@ -53,7 +53,7 @@
 
 # check: 
         # to dry run 
-        # ansible-playbook book2.yml --check
+        # ansible-playbook playbook2.yml --check
 
 # -----------------------------------------
 
@@ -78,7 +78,7 @@
   
 # check: 
         # to dry run 
-        # ansible-playbook book2.yml --check
+        # ansible-playbook playbook3.yml --check    //this wont execute the playbook
 
 # -----------------------------------------
 
@@ -108,4 +108,4 @@
 
 # check: 
         # to dry run 
-        # ansible-playbook book2.yml --check
+        # ansible-playbook playbook4.yml --check
