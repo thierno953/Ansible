@@ -6,10 +6,10 @@
 * Roles
 * Vault
 
-- Ansible-galaxy  - used to work the roles
-- Ansible-tower   - gui mode (chargable)
-- Ansible-doc     - gives documents
-- Ansible-vault   - storage used encript/decript the files
+- Ansible-galaxy  #used to work the roles
+- Ansible-tower   #gui mode (chargable)
+- Ansible-doc     #gives documents
+- Ansible-vault   #storage used encript/decript the files
 
 
 ```bash
@@ -33,7 +33,7 @@ ansible --version
 ```jsx
 nano /etc/hosts  #hosts -- give the info of other machines
 ```
-# Ansible Modules: one time executable command
+**Ansible Modules:** One time executable command
 
 ```bash
 #1. ping        //If host file /etc/ansible hosts
@@ -99,9 +99,14 @@ ansible all -m raw -a "ls -la > temp.txt " -b
 ansible all -m raw -a "ls -la /var/logs >> /home/vagrant/temp.txt " -b
 ``` 
 
-# section in playbooks:        multiple commands in the playbooks
+**section in playbooks:** Multiple commands in the playbooks
 
-- 1 - target section        -    host information
-- 2 - variable section      -    variables information ex; packages names
-- 3 - tasks section         -    installed/ removed
-- 4 - handler section       -    deployment
+```bash
+1 - target section         #host information
+
+2 - variable section       #variables information ex; packages names
+
+3 - tasks section          #installed/ removed
+
+4 - handler section        #deployment
+```
