@@ -1,0 +1,26 @@
+# until -  until the condition is satisfied task will not start 
+
+--- # to install and start httpd service
+- hosts: prodappserver
+  become: true 
+  tasks:
+    - name: install httpd
+      action: yum pkg=httpd state=installed
+
+    - name: check the service is running or not
+      shell: systemctl status httpd
+      register: result
+      until: result.stdout.find("running")!= -1
+      retries: 5
+      delay: 10
+
+    - name: start httpd service
+      action: service name=httpd state=started
+
+    - name: deploy hello.html
+      action: copy src=/home/vagrant/hello.html dest=/var/www/html
+
+
+# ansible prodappserver -m shell -a "yum remove httpd" -b
+# ansible-playbook book2.yml --check
+# ansible-playbook book2.yml 
