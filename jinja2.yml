@@ -1,0 +1,15 @@
+---
+- name: Ansible Jinja2 template with conditionals 
+  hosts: RHEL 
+  vars:
+    fruits:
+      - mongo
+      - apple
+      - grapes
+      - banana
+      - papaya
+  tasks:
+    - name: Using loop with Jinja2 template
+      template:
+        src: /home/vagrant/fruits.j2
+        dest: /home/vagrant/fruits.txt
