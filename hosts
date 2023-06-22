@@ -1,6 +1,7 @@
 [prodappserver]
-192.168.56.100 controller
-192.168.56.101 server1
+controller
+server1
 
 [dbservers]
-192.168.56.102 server2
+server2
+
