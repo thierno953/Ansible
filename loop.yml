@@ -1,0 +1,86 @@
+# With in the loop :
+#  with_items
+
+---
+#1 targetsection:
+- hosts: all
+  become: true
+
+  #2 task section:
+  tasks:
+    - name: install redhat packages
+      yum: pkg={{ item }} state=installed update_cache=yes
+      when: ansible_distribution== "RedHat"
+      with_items:
+        - wget
+        - java
+        - git
+        - httpd
+        - nginx
+    - name: install debian packages
+      apt: pkg={{ item }} state=latest update_cache=yes
+      when: ansible_distribution== "Ubuntu"
+      with_items:
+        - wget
+        - java
+        - git
+        - apache2
+        - nginx
+
+# -----------------------------------------
+
+---
+- name: Create multiple files
+  hosts: devservers
+  become: true
+  tasks:
+    - name: create multiple files
+      file:
+        name: "{{ item }}"
+        state: touch
+        mode: 0775
+        owner: root
+        group: root
+      with_items:
+        - test.log
+        - devops.cfg
+        - file1.txt
+        - devdb.properties
+
+# -----------------------------------------
+
+---
+- name: delete files
+  hosts: nodes
+  become: true
+  tasks:
+    - name: delete multiple files
+      file:
+        path: /home/vagrant/ {{ item }}
+        state: absent
+        mode: 755
+        owner: root
+        group: root
+      with_items:
+        - test.log
+        - devops.cfg
+        - file1.txt
+        - devdb.properties
+
+# -----------------------------------------
+
+---
+- name: Createion permissions
+  hosts: nodes
+  become: true
+  tasks:
+    - name: Create multiple files example
+      file:
+        path: "{{ item.location }}"
+        state: touch
+        mode: "{{ item.mode }}"
+        owner: "{{ item.owner }}"
+        group: "{{ item.group }}"
+      with_items:
+        - { location: "file1.txt", mode: "566", owner: root, group: root }
+        - { location: "file2.txt", mode: "766", owner: root, group: root }
