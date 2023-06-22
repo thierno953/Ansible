@@ -6,11 +6,12 @@
 * Roles
 * Vault
 
-- Ansible-galaxy  #used to work the roles
-- Ansible-tower   #gui mode (chargable)
-- Ansible-doc     #gives documents
-- Ansible-vault   #storage used encript/decript the files
-
+```bash
+Ansible-galaxy   #used to work the roles
+Ansible-tower    #gui mode (chargable)
+Ansible-doc      #gives documents
+Ansible-vault    #storage used encript/decript the files
+```
 
 ```bash
 sudo yum search python
