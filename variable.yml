@@ -1,0 +1,98 @@
+--- # variable section - install and start httpd and apache2 in linux and ubuntu
+- hosts: all
+  become: true
+  vars:
+    redhat_package: httpd
+    debian_package: apache2
+  tasks:
+    - name: install httpd
+      yum: pkg={{ redhat_package }} state=installed
+      when: ansible_distribution == "RedHat"
+
+    - name: install apache2
+      apt: pkg={{ debian_package }} state=latest
+      when: ansible_distribution == "Ubuntu"
+
+    - name: start httpd
+      service: name={{ redhat_package }} state=started enable=true
+      when: ansible_distribution == "RedHat"
+
+    - name: start apache2
+      service: name={{ debian_package }} state=started enable=true
+      when: ansible_distribution == "Ubuntu"
+
+# handler section:  is always followed by notify condition
+#1) - handlers will function based on notify parameter
+#2) - handlers will execute only for fresh installation
+# change          ok
+
+# ----------------------------------------
+
+--- # variable section - install and start httpd and apache2 in linux and ubuntu
+#1 targetsection:
+- hosts: all
+  become: true
+
+  #2 variable section:
+  vars:
+    redhat_package: nginx
+    debian_package: nginx
+
+  #3 task section:
+  tasks:
+    - name: install nginx
+      yum: pkg={{ redhat_package }} state=installed
+      when: ansible_distribution == "RedHat"
+      notify: start the nginx package
+
+    - name: install nginx
+      apt: pkg={{ debian_package }} state=latest
+      when: ansible_distribution == "Ubuntu"
+      notify: start the nginx service
+
+  #4 handle section:
+  handlers:
+    - name: start the nginx package
+      service: name={{ redhat_package }} state=started
+      when: ansible_distribution == "RedHat"
+
+    - name: start the nginx service
+      service: name={{ debian_package }} state=started
+      when: ansible_distribution == "Ubuntu"
+
+# 1 - handlers will function based on notify parameter
+# 2 - handler will execute only for fresh installation
+
+# changed     ok
+
+# sudo yum remove nginx -y
+
+# ----------------------------------------
+
+--- # variable section - install and start httpd and apache2 in linux and ubuntu
+#1 targetsection:
+- hosts: all
+  become: true
+
+  #2 variable section:
+  vars_prompt:
+    - name: redhat_package
+      private: no
+      default: wget
+    - name: debian_package
+      private: no
+      default: wget
+
+  #3 task section:
+  tasks:
+    - name: install redhat_package
+      yum: pkg={{ redhat_package }} state=installed update_cache=yes
+      when: ansible_distribution == "RedHat"
+
+    - name: install debian_package
+      apt: pkg={{ debian_package }} state=installed update_cache=yes
+      when: ansible_distribution == "Ubuntu"
+
+#1) Direct way: example given above
+#2) Dynamic variables - during execution of playbook, it prompt for package
+  # vars_prompt:
