@@ -74,7 +74,7 @@
 - hosts: all
   become: true
 
-  #2 variable section:
+#2 variable section:
   vars_prompt:
     - name: redhat_package
       private: no
@@ -83,7 +83,7 @@
       private: no
       default: wget
 
-  #3 task section:
+#3 task section:
   tasks:
     - name: install redhat_package
       yum: pkg={{ redhat_package }} state=installed update_cache=yes
