@@ -1,0 +1,41 @@
+--- # tag 
+- hosts: prodappserver
+  become: true 
+  tasks:
+    - name: install httpd
+      yum: pkg=httpd state=installed
+      when: ansible_distribution == "RedHat"
+      tags:
+        - task1
+
+    - name: install apache2
+      apt: pkg=apache2 state=latest
+      when: ansible_distribution == "Ubuntu"
+      tags:
+        - task2
+
+    - name: start httpd
+      service: name=httpd state=started
+      when: ansible_distribution == "RedHat"
+      tags:
+        - task3
+
+    - name: start apache2
+      service: name=apache2 state=started
+      when: ansible_distribution == "Ubuntu"
+      tags:
+        - task4
+
+    - name: deploy hello.html
+      copy: src=/home/vagrant/hello.html dest=/var/www/html/
+      when: ansible_distribution == "RedHat"
+      tags:
+        - task5
+
+    - name: deploy hello.html
+      copy: src=/home/vagrant/hello.html dest=/var/www/html/
+      when: ansible_distribution == "Ubuntu"
+      tags:
+        - task6
+
+
