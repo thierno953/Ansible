@@ -1,2 +1,4 @@
-192.168.56.100 ansible-control
-192.168.56.101 node1
+192.168.56.100 controller
+192.168.56.101 server1
+192.168.56.102 server2
+
