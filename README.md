@@ -56,6 +56,7 @@ ansible all -m shell -a "date"
 ansible all -m shell -a "touch abc.txt" -b
 
 ansible -i /etc/hosts all -m shell -a "date"
+ansible -i /etc/hosts all -m shell -a "ls /"
 ansible -i /etc/hosts all -m shell -a "ls -la"
 ansible -i /etc/hosts all -m shell -a "pwd"
 ansible -i /etc/hosts all -m shell -a "touch /opt/file.txt" -b
