@@ -31,7 +31,7 @@
 
 ---
 - name: Create multiple files
-  hosts: devservers
+  hosts: dbservers
   become: true
   tasks:
     - name: create multiple files
@@ -51,7 +51,7 @@
 
 ---
 - name: delete files
-  hosts: nodes
+  hosts: dbservers
   become: true
   tasks:
     - name: delete multiple files
@@ -71,7 +71,7 @@
 
 ---
 - name: Createion permissions
-  hosts: nodes
+  hosts: dbservers
   become: true
   tasks:
     - name: Create multiple files example
