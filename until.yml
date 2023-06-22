@@ -22,5 +22,5 @@
 
 
 # ansible prodappserver -m shell -a "yum remove httpd" -b
-# ansible-playbook book2.yml --check
-# ansible-playbook book2.yml 
+# ansible-playbook until.yml --check
+# ansible-playbook until.yml 
