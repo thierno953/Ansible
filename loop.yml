@@ -1,6 +1,43 @@
 # With in the loop :
 #  with_items
 
+--- 
+- name: Loop & Task Control
+  hosts: webservers
+  become: true
+  vars:
+    userlist:
+      - user101
+      - user102
+      - user103
+  tasks:
+    - name: Show users 
+      debug:
+        msg: "{{ item }}"
+      with_list: "{{ userlist }}"
+      
+    - name: Create users 
+      user:
+        name: "{{ item }}"
+      with_list: "{{ userlist }}"
+
+    - name: Install Packages
+      yum:
+        name:
+          - httpd
+          - firewalld
+        state: present
+    - name: Enable Service
+      service:
+        name: "{{ item }}"
+        state: started
+        enabled: true
+      loop:
+        - httpd
+        - firewalld
+     
+
+# ---------------------------------------------
 ---
 #1 targetsection:
 - hosts: all
