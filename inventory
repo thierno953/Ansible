@@ -4,10 +4,13 @@ localhost ansible_connection=local
 
 [webservers]
 server1
+
+[dbservers]
 server2
 
 [webstack:children] 
 prodappserver 
 webservers 
+dbservers
 
 
