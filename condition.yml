@@ -1,30 +1,46 @@
-# when - condition playbook
-
---- # to install and start httpd and apache2
-- hosts: all
-  become: true 
+--- # when - condition playbook 
+- name: Loop & Task Control
+  hosts: webservers
+  become: true
+  vars:
+    install_package: "ok"
+    supported_os:
+      - RedHat
+      - Fedora
+      - CentOS
+    min_memory: 100
+    userlist:
+      - user101
+      - user102
+      - user103
   tasks:
-    - name: install httpd
-      yum: pkg=httpd state=installed
-      when: ansible_distribution == "RedHat"
+    - name: Show users 
+      debug:
+        msg: "{{ item }}"
+      with_list: "{{ userlist }}"
+      
+    - name: Create users 
+      user:
+        name: "{{ item }}"
+      with_list: "{{ userlist }}"
 
-    - name: install apache2
-      apt: pkg=apache2 state=latest
-      when: ansible_distribution == "Ubuntu"
+    - name: Install Packages
+      yum:
+        name:
+          - httpd
+          - firewalld
+        state: present
+      when: 
+        - install_package == "ok"
+        - ansible_distribution in supported_os
+        - min_memory is defined
 
-    - name: start httpd
-      service: name=httpd state=started enable=true
-      when: ansible_distribution == "RedHat"
-
-    - name: start apache2
-      service: name=apache2 state=started enable=true
-      when: ansible_distribution == "Ubuntu"
-
-    - name: deploy hello.html
-      copy: src=/home/vagrant/hello.html dest=/var/www/html/
-      when: ansible_distribution == "RedHat"
-
-    - name: deploy hello.html
-      copy: src=/home/vagrant/hello.html dest=/var/www/html/
-      when: ansible_distribution == "Ubuntu"
-
+    - name: Enable Service
+      service:
+        name: "{{ item }}"
+        state: started
+        enabled: true
+      loop:
+        - httpd
+        - firewalld
+     
