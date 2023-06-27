@@ -38,33 +38,6 @@
      
 
 # ---------------------------------------------
----
-#1 targetsection:
-- hosts: all
-  become: true
-
-  #2 task section:
-  tasks:
-    - name: install redhat packages
-      yum: pkg={{ item }} state=installed update_cache=yes
-      when: ansible_distribution== "RedHat"
-      with_items:
-        - wget
-        - java
-        - git
-        - httpd
-        - nginx
-    - name: install debian packages
-      apt: pkg={{ item }} state=latest update_cache=yes
-      when: ansible_distribution== "Ubuntu"
-      with_items:
-        - wget
-        - java
-        - git
-        - apache2
-        - nginx
-
-# -----------------------------------------
 
 ---
 - name: Create multiple files
