@@ -1,15 +1,11 @@
----
-- hosts: all
-  become: true 
-  gather_facts: false  
+--- 
+- name: Ansible Facts
+  hosts: webservers
+  gather_facts: false
   tasks:
-    - name: install httpd
-      yum: pkg=httpd state=installed
+    - name: collect facts 
+      setup:
+    - name: Show details
+      debug:
+        msg: "{{ ansible_distribution }} {{ ansible_hostname }} {{ ansible_default_ipv4['address'] }}"
 
-    - name: start httpd
-      service: name=httpd state=started
-
-    - name: deploy hello.html
-      copy: src=/home/vagrant/hello.html dest=/var/www/html/
-
-# gather_facts: false -  It wont check or gather the remote machine information
