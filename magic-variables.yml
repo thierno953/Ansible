@@ -1,0 +1,16 @@
+--- 
+- name: Magic Variables 
+  hosts: webservers
+  gather_facts: false
+  tasks:
+    - name: Show Inventory Host Name
+      debug:
+        msg: "{{ inventory_hostname }}"
+    - name: Show Group
+      debug:
+        msg: "{{ group_names }}"
+    
+    - name: Show Host Variable
+      debug:
+        msg: "{{ hostvars }}"
+
