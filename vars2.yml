@@ -1,0 +1,11 @@
+users:
+  john:
+    firstname: John 
+    lastname : Doe 
+    designation: Admin
+    Location: Belgium 
+  lind: 
+    firstname: Linda 
+    lastname : Marry 
+    designation: Operator
+    Location: NewYork 

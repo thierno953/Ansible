@@ -1,27 +1,31 @@
---- # Playbooks
+--- # Variables
 - name: Install and configure httpd
   hosts: webservers
   become: yes 
+  vars:
+  vars_files:
   tasks:
-    - name: Install httpd & firewalld
-      become: true
+    - name: Include vars 
+      include_vars: vars.yml
+
+    - name: Install {{ web_package }} & {{ firewall_package }}
       yum: 
         name:
-          - httpd
-          - firewalld
+          - "{{ web_package }}"
+          - "{{ firewall_package }}"
         state: latest
-    - name: Enable and Start httpd
+    - name: Enable and Start {{ web_service }}
       service:
-        name: httpd
+        name: "{{ web_service }}"
         enabled: true 
         state: started
-    - name: Enable and Start firewalld
+    - name: Enable and Start {{ firewall_service }}
       service:
-        name: firewalld
+        name: "{{ firewall_service }}" 
         enabled: true 
         state: started
     
-    - name: Open firewall ports 
+    - name: Open {{ firewall_service }} ports 
       firewalld:
         service: http
         permanent: true
@@ -40,5 +44,3 @@
       uri: 
         url: http://server1
         status_code: 200
-
-

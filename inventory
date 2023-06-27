@@ -1,0 +1,13 @@
+[prodappserver]
+controller
+localhost ansible_connection=local
+
+[webservers]
+server1
+server2
+
+[webstack:children] 
+prodappserver 
+webservers 
+
+
