@@ -1,15 +1,21 @@
----
-- name: Ansible Jinja2 template with conditionals 
-  hosts: RHEL 
+--- 
+- name: Using Jinja2
+  hosts: webservers
+  become: yes
   vars:
-    fruits:
-      - mongo
-      - apple
-      - grapes
-      - banana
-      - papaya
+    system_admin_email: admin@lab.local
+    users:
+      - John
+      - Lisa
+      - Raj
+      - Rakel
+      - Gino
   tasks:
-    - name: Using loop with Jinja2 template
+    - name: Deploy motd
       template:
-        src: /home/vagrant/fruits.j2
-        dest: /home/vagrant/fruits.txt
+        dest: /etc/motd 
+        src: motd.j2
+    - name: Deploy user list
+      template:
+        dest: /tmp/user_list
+        src: user_list.j2
