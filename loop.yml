@@ -1,7 +1,7 @@
 # With in the loop :
 #  with_items
 
---- 
+---
 - name: Loop & Task Control
   hosts: webservers
   become: true
@@ -11,12 +11,12 @@
       - user102
       - user103
   tasks:
-    - name: Show users 
+    - name: Show users
       debug:
         msg: "{{ item }}"
       with_list: "{{ userlist }}"
-      
-    - name: Create users 
+
+    - name: Create users
       user:
         name: "{{ item }}"
       with_list: "{{ userlist }}"
@@ -35,7 +35,6 @@
       loop:
         - httpd
         - firewalld
-     
 
 # ---------------------------------------------
 
@@ -66,9 +65,9 @@
   tasks:
     - name: delete multiple files
       file:
-        path: /home/vagrant/ {{ item }}
+        path: /home/myvagrant/{{ item }}
         state: absent
-        mode: 755
+        mode: 0755
         owner: root
         group: root
       with_items:
@@ -80,17 +79,144 @@
 # -----------------------------------------
 
 ---
-- name: Createion permissions
+- name: managing the file permissions using ansible
   hosts: webservers
   become: true
   tasks:
-    - name: Create multiple files example
+    - name: Create a new file with permissions
       file:
         path: "{{ item.location }}"
         state: touch
         mode: "{{ item.mode }}"
         owner: "{{ item.owner }}"
         group: "{{ item.group }}"
+      register: task1
       with_items:
-        - { location: "file1.txt", mode: "566", owner: root, group: root }
-        - { location: "file2.txt", mode: "766", owner: root, group: root }
+        - { location: "/tmp/file1.txt", mode: "566", owner: root, group: root }
+        - { location: "/tmp/file2.txt", mode: "766", owner: root, group: root }
+    - name: Printing the result of task1
+      debug:
+        msg: "{{ task1 }}"
+
+# -----------------------------------------
+
+---
+- name: managing the file permissions using ansible
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Create a symbolic link
+      file:
+        src: /etc/redhat-release
+        dest: /tmp/link
+        mode: root
+        owner: root
+        state: link
+
+# -----------------------------------------
+
+---
+- name: managing the file permissions using ansible
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Touch a file, using symbolic modes to set the permissions (equivalent to 0644)
+      file:
+        src: /etc/link.conf
+        state: touch
+        mode: u=rw,g=r,o=r
+
+# -----------------------------------------
+
+---
+- name: managing the file permissions using ansible
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Touch the same file, but add/remove some permissions
+      file:
+        src: /etc/link.conf
+        state: touch
+        mode: u+rw,g-wr,o-rwx
+
+# -----------------------------------------
+
+---
+- name: managing the file permissions using ansible
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Touch the same file, but do not change times this makes the task idempotent
+      file:
+        src: /etc/link.conf
+        state: touch
+        mode: u+rw,g-wr,o-rwx
+        modification_time: preserve
+        access_time: preserve
+
+# -----------------------------------------
+
+---
+- name: managing the file permissions using ansible
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Create a directory if it does not exist
+      file:
+        src: /etc/link
+        state: directory
+        mode: "0755"
+...
+# -----------------------------------------
+---
+- name: managing the file permissions using ansible
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Update modification and access time of given file
+      file:
+        src: /etc/link
+        state: directory
+        modification_time: now
+        access_time: now
+
+# -----------------------------------------
+
+---
+- name: managing the file permissions using ansible
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Create a directory as my vagrant under /etc/link
+      file:
+        src: /etc/link/myvagrant
+        state: directory
+        register: result
+
+    - name: Printing the result of the previous task
+      debug:
+        msg: "{{ result }}"
+
+    - name: Recursively change ownership of the myvagrant
+      file:
+        path: /etc/link
+        state: directory
+        recurse: yes
+        owner: myvagrant
+        group: myvagrant
+
+# -----------------------------------------
+---
+- name: managing the file permissions using ansible
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Remove file (delete file)
+      file:
+        path: /etc/link.conf
+        state: absent
+
+    - name: Recursively remove directory
+      file:
+        path: /etc/link
+        state: absent
