@@ -1,7 +1,0 @@
---- 
-- name: Install Git
-  hosts: webservers
-  become: yes
-  roles:
-    - role: myweb
-     
