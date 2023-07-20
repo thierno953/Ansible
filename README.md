@@ -1,5 +1,7 @@
 1. create the ansible machine sg
-    - ssh from ip
+    ```jsx
+     ssh from ip
+    ```
 
 2. create the server sg 
     ssh from ansible sg
