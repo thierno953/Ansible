@@ -1,0 +1,17 @@
+---
+- name: Create multiple files
+  hosts: server1
+  become: yes
+  become_user: root
+  vars:
+    users:
+      - John
+      - Lisa
+      - Raj
+      - Rakel
+      - Gino
+  tasks:
+    - name: Users list
+      template:
+        dest: /tmp/user_list
+        src: user_list.j2

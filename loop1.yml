@@ -1,0 +1,20 @@
+---
+- name: Create multiple files
+  hosts: server1
+  become: yes
+  become_user: root
+  tasks:
+    - name: create files
+      file:
+        name: "{{ item }}"
+        state: touch
+        mode: 0775
+        owner: root
+        group: root
+      with_items:
+        - test.log
+        - devops.cfg
+        - file1.txt
+        - devdb.properties
+
+
