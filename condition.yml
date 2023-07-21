@@ -2,6 +2,7 @@
 - name: Install httpd and firewalld
   hosts: server1
   become: yes
+  become_user: root
   vars:
     install_package: "ok"
     supported_os:
