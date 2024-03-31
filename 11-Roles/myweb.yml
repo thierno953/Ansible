@@ -1,0 +1,17 @@
+---
+- name: Enable Intranet Services
+  hosts: Target1
+  become: yes
+  tasks:
+    - name: myweb role
+      include_role:
+        name: myweb
+
+- name: Test intranet web server
+  hosts: localhost
+  become: no
+  tasks:
+    - name: connect to intranet webserver
+      uri: 
+        url: http://Target1
+        status_code: 200

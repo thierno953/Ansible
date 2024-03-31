@@ -10,8 +10,8 @@ nano /etc/hosts  #hosts -- give the info of other machines
 ```bash
 #1. ping        //If host file /etc/ansible hosts
 ansible all -m ping               
-ansible prodappserver -m ping
-ansible dbservers -m ping
+ansible nodes -m ping
+ansible db -m ping
 ansible -i hosts all -m ping        #(/home/vagrant)
 ansible -i /etc/hosts all -m ping   #(/etc/hosts)
 ansible -i /etc/hosts all -m setup
@@ -33,16 +33,16 @@ ansible all -m shell -a "touch abc.txt" -b
 # apt - state values: absent, build-dep, fixed, latest, present
 ansible -i all -m yum -a "pkg=httpd state=installed"
 ansible -i all -m yum -a "pkg=httpd state=installed" -b
-ansible -i dbservers -m shell -a "apt update" -b
-ansible -i dbservers -m apt -a "pkg=apache2 state=latest" -b
+ansible -i db -m shell -a "apt update" -b
+ansible -i db -m apt -a "pkg=apache2 state=latest" -b
 
 ansible all -m yum -a "pkg=httpd state=installed" -b
 ansible all -m apt -a "pkg=nginx state=latest" -b
 
 #5. service    //To start/stop/restart the service
 # linux:  state: reloaded, restarted, started, stopped
-ansible -i prodappserver -m service -a "name=httpd state=started" -b
-ansible -i prodappserver -m service -a "name=httpd state=stopped" -b
+ansible -i nodes -m service -a "name=httpd state=started" -b
+ansible -i nodes -m service -a "name=httpd state=stopped" -b
 
 ansible all -m service -a "name=httpd state=started" -b
 ansible all -m service -a "name=apache2 state=started" -b
@@ -54,7 +54,7 @@ ansible all -m file -a "path=/home/vagrant/folder state=directory"     #new dire
 ansible all -m file -a "path=/home/vagrant/abc.txt state=file mode=0777 owner=root" -b  #permission existing file
 
 #7. copy           // Copy files from source machine to remote machine
-ansible prodappserver -m copy -a "src=/home/vagrant/index.html dest=/var/www/html/" -b
+ansible nodes -m copy -a "src=/home/vagrant/index.html dest=/var/www/html/" -b
 
 #8. command        // To execute the commands
 ansible all -m command -a "sh /home/vagrant/script.sh" -b

@@ -1,0 +1,10 @@
+ansible-vault create secret-data.yml
+ansible-vault view secret-data.yml
+ansible-vault edit secret-data.yml
+ansible-vault decrypt secret-data.yml
+ansible-vault encrypt secret-data.yml
+ansible-vault rekey secret-data.yml
+
+
+ansible-vault encrypt user-passwd.yml
+ansible-playbook site.yml --vault-id @prompt

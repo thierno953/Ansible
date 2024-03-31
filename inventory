@@ -1,2 +1,17 @@
-[server1]
-172.31.24.46
+[nodes]
+Target1
+Target2
+
+[node]
+Target1
+
+[db]
+Target3
+
+[servers:children]
+nodes
+node
+db
+
+[myself]
+localhost ansible_connection=local
