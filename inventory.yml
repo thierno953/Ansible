@@ -1,0 +1,21 @@
+all:
+  children:
+    nodes:
+      hosts:
+        Target1:
+        Target2:
+    node:
+      hosts:
+        Target1:
+    db:
+      hosts:
+        Target3:
+    servers:
+      children:
+      - nodes
+      - node
+      - db
+    myself:
+      hosts:
+        localhost:
+          ansible_connection: local
